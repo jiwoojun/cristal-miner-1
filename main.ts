@@ -16,27 +16,33 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (controller.down.isPressed()) {
+        breakBlockStage = 0
         if (tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom))) {
             if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile1`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[1])
+                if (breakIncrement + 1 >= 10) {
+                    breakBlockStage = 10
+                } else {
+                    breakBlockStage = breakIncrement + 1
+                }
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile2`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[2])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 2])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile3`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[3])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 3])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile5`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[4])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 4])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile6`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[5])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 5])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile7`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[6])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 6])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile8`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[7])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 7])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile9`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[8])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 8])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile10`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[9])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 9])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile11`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[10])
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[breakBlockStage + 10])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile`)) {
                 tiles.setWallAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), false)
                 tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`cave background`)
@@ -181,7 +187,9 @@ function CheckOre2 (mySprite: Sprite) {
     }
 }
 let pointingDirection = 0
+let breakBlockStage = 0
 let rock_breaking_list: Image[] = []
+let breakIncrement = 0
 let miner: Sprite = null
 miner = sprites.create(img`
     . . . . f f f f f . 5 5 5 . . . 
@@ -207,6 +215,7 @@ miner.ay = 1000
 tiles.placeOnRandomTile(miner, assets.tile`myTile4`)
 scene.cameraFollowSprite(miner)
 info.setScore(0)
+breakIncrement = 0
 rock_breaking_list = [
 assets.tile`myTile1`,
 assets.tile`myTile2`,
