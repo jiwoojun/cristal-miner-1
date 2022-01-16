@@ -18,25 +18,25 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (controller.down.isPressed()) {
         if (tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom))) {
             if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile1`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile2`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[1])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile2`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile3`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[2])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile3`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile5`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[3])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile5`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile6`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[4])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile6`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile7`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[5])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile7`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile8`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[6])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile8`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile9`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[7])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile9`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile10`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[8])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile10`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile11`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[9])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile11`)) {
-                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile`)
+                tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), rock_breaking_list[10])
             } else if (tiles.tileAtLocationEquals(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`myTile`)) {
                 tiles.setWallAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), false)
                 tiles.setTileAt(tiles.locationInDirection(tiles.locationOfSprite(miner), CollisionDirection.Bottom), assets.tile`cave background`)
@@ -180,6 +180,7 @@ function CheckOre2 (mySprite: Sprite) {
         info.changeScoreBy(1000)
     }
 }
+let rock_breaking_list: Image[] = []
 let miner: Sprite = null
 miner = sprites.create(img`
     . . . . f f f f f . 5 5 5 . . . 
@@ -192,11 +193,11 @@ miner = sprites.create(img`
     . . f f f e e e f f f . . . . . 
     . . f . f e e e f . f . . . . . 
     . . f . f e e e f . f . . . . . 
-    . . f . f e e e f . f . . . . . 
-    . . f . f e e e f . f . . . . . 
-    . . . . f f f f f . . . . . . . 
-    . . . . f . . . f . . . . . . . 
-    . . . . f . . . f . . . . . . . 
+    . . f . f e e e f . f 1 . . . . 
+    . . f . f e e e f . f . 1 . . . 
+    . . . . f f f f f e e e 1 . . . 
+    . . . . f . . . f . . . 1 . . . 
+    . . . . f . . . f . . 1 . . . . 
     . . . . f . . . f . . . . . . . 
     `, SpriteKind.Player)
 tiles.setTilemap(tilemap`underground`)
@@ -205,3 +206,76 @@ miner.ay = 1000
 tiles.placeOnRandomTile(miner, assets.tile`myTile4`)
 scene.cameraFollowSprite(miner)
 info.setScore(0)
+rock_breaking_list = [
+assets.tile`myTile1`,
+assets.tile`myTile2`,
+assets.tile`myTile3`,
+assets.tile`myTile5`,
+assets.tile`myTile6`,
+assets.tile`myTile7`,
+assets.tile`myTile8`,
+assets.tile`myTile9`,
+assets.tile`myTile10`,
+assets.tile`myTile11`,
+assets.tile`myTile`
+]
+game.onUpdate(function () {
+    if (info.score() > 100 && info.score() <= 500) {
+        miner.setImage(img`
+            . . . . f f f f f . 5 5 5 . . . 
+            . . . . f 5 5 5 f 1 5 5 . . . . 
+            . . . . f f f f f f f f 5 . . . 
+            . . . . f 9 d 9 f . . . . . . . 
+            . . . . f d d d f . . . . . . . 
+            . . . . f 9 9 9 f . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . f f f e e e f f f . . . . . 
+            . . f . f e e e f . f . . . . . 
+            . . f . f e e e f . f . . . . . 
+            . . f . f e e e f . f f . . . . 
+            . . f . f e e e f . f . f . . . 
+            . . . . f f f f f e e e f . . . 
+            . . . . f . . . f . . . f . . . 
+            . . . . f . . . f . . f . . . . 
+            . . . . f . . . f . . . . . . . 
+            `)
+    } else if (info.score() > 500 && info.score() <= 800) {
+        miner.setImage(img`
+            . . . . f f f f f . 5 5 5 . . . 
+            . . . . f 5 5 5 f 1 5 5 . . . . 
+            . . . . f f f f f f f f 5 . . . 
+            . . . . f 9 d 9 f . . . . . . . 
+            . . . . f d d d f . . . . . . . 
+            . . . . f 9 9 9 f . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . f f f e e e f f f . . . . . 
+            . . f . f e e e f . f . . . . . 
+            . . f . f e e e f . f . . . . . 
+            . . f . f e e e f . f 9 . . . . 
+            . . f . f e e e f . f . 9 . . . 
+            . . . . f f f f f e e e 9 . . . 
+            . . . . f . . . f . . . 9 . . . 
+            . . . . f . . . f . . 9 . . . . 
+            . . . . f . . . f . . . . . . . 
+            `)
+    } else if (info.score() > 800 && info.score() <= 1001) {
+        miner.setImage(img`
+            . . . . f f f f f . 5 5 5 . . . 
+            . . . . f 5 5 5 f 1 5 5 . . . . 
+            . . . . f f f f f f f f 5 . . . 
+            . . . . f 9 d 9 f . . . . . . . 
+            . . . . f d d d f . . . . . . . 
+            . . . . f 9 9 9 f . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . f f f e e e f f f . . . . . 
+            . . f . f e e e f . f . . . . . 
+            . . f . f e e e f . f . . . . . 
+            . . f . f e e e f . f 7 . . . . 
+            . . f . f e e e f . f . 7 . . . 
+            . . . . f f f f f e e e 7 . . . 
+            . . . . f . . . f . . . 7 . . . 
+            . . . . f . . . f . . 7 . . . . 
+            . . . . f . . . f . . . . . . . 
+            `)
+    }
+})
