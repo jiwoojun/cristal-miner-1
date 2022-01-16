@@ -180,6 +180,7 @@ function CheckOre2 (mySprite: Sprite) {
         info.changeScoreBy(1000)
     }
 }
+let pointingDirection = 0
 let rock_breaking_list: Image[] = []
 let miner: Sprite = null
 miner = sprites.create(img`
@@ -277,5 +278,14 @@ game.onUpdate(function () {
             . . . . f . . . f . . 7 . . . . 
             . . . . f . . . f . . . . . . . 
             `)
+    }
+    if (controller.left.isPressed()) {
+        pointingDirection = 0
+    } else if (controller.down.isPressed()) {
+        pointingDirection = 1
+    } else if (controller.right.isPressed()) {
+        pointingDirection = 2
+    } else if (controller.up.isPressed()) {
+        pointingDirection = 3
     }
 })
