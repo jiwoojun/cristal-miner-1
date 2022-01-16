@@ -268,6 +268,7 @@ game.onUpdate(function () {
             . . . . f . . . f . . 9 . . . . 
             . . . . f . . . f . . . . . . . 
             `)
+        breakIncrement = 2
     } else if (info.score() > 800 && info.score() <= 1001) {
         miner.setImage(img`
             . . . . f f f f f . 5 5 5 . . . 
@@ -287,6 +288,7 @@ game.onUpdate(function () {
             . . . . f . . . f . . 7 . . . . 
             . . . . f . . . f . . . . . . . 
             `)
+        breakIncrement = 4
     }
     if (controller.left.isPressed()) {
         pointingDirection = 0
